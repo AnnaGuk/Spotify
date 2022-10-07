@@ -5,7 +5,6 @@ import {
   List,
   ListItem,
   Divider,
-  Center,
   LinkBox,
   LinkOverlay,
 } from "@chakra-ui/layout";
@@ -35,6 +34,7 @@ const Sidebar = () => {
                 name={item.name}
                 route={item.route}
                 icon={item.icon}
+                key={item.name}
               />
             ))}
           </List>
@@ -47,6 +47,7 @@ const Sidebar = () => {
                 name={item.name}
                 route={item.route}
                 icon={item.icon}
+                key={item.name}
               />
             ))}
           </List>
@@ -58,7 +59,13 @@ const Sidebar = () => {
               playlists.map((playlist) => (
                 <ListItem paddingX="20px" fontSize="16px" key={playlist.id}>
                   <LinkBox>
-                    <Link href="/">
+                    <Link
+                      href={{
+                        pathname: "/playlist/[id]",
+                        query: { id: playlist.id },
+                      }}
+                      passHref
+                    >
                       <LinkOverlay>{playlist.name}</LinkOverlay>
                     </Link>
                   </LinkBox>
