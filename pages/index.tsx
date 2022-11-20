@@ -3,8 +3,10 @@ import { Image } from "@chakra-ui/react";
 import GradientLayout from "../components/GradientLayout/GradientLayout";
 import { useMe } from "../lib/hooks";
 import prisma from "../lib/prisma";
+import { ArtistData } from "../prisma/songsData";
+import { InferGetServerSidePropsType } from "next";
 
-const Home = ({ artists }) => {
+const Home = ({ artists }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { user } = useMe();
 
   return (

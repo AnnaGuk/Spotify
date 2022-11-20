@@ -1,14 +1,22 @@
-export const artistsData: {
+type SongData = {
   name: string;
-  songs: any[];
-}[] = [
+  duration: number;
+  url: string;
+  artist?: string;
+};
+
+export type ArtistData = {
+  name: string;
+  songs: SongData[];
+};
+
+export const artistsData: ArtistData[] = [
   {
     name: "Glitch",
     songs: [
       {
         name: "Fermi Paradox",
         duration: 235,
-
         url: "https://dl.dropboxusercontent.com/s/7xmpwvvek6szx5n/fermi-paradox.mp3?dl=0",
       },
     ],

@@ -2,14 +2,16 @@ import { Box } from "@chakra-ui/layout";
 import { Table, Thead, Td, Tr, Th, Tbody, IconButton } from "@chakra-ui/react";
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { useStoreActions } from "easy-peasy";
+import { useStoreActions } from "../../lib/store";
 import { formatDate, formatTime } from "../../lib/formatters";
+import { SongsTableProps } from "./types";
+import { SongWithArtist } from "../../lib/types";
 
-const SongsTable = ({ songs }) => {
-  const playSongs = useStoreActions((store: any) => store.changeActiveSongs);
-  const setActiveSong = useStoreActions((store: any) => store.changeActiveSong);
+const SongsTable = ({ songs }: SongsTableProps) => {
+  const playSongs = useStoreActions((store) => store.changeActiveSongs);
+  const setActiveSong = useStoreActions((store) => store.changeActiveSong);
 
-  const handlePlay = (activeSong?): void => {
+  const handlePlay = (activeSong?: SongWithArtist): void => {
     setActiveSong(activeSong || songs[0]);
     playSongs(songs);
   };
@@ -53,7 +55,7 @@ const SongsTable = ({ songs }) => {
               >
                 <Td>{i + 1}</Td>
                 <Td>{song.name}</Td>
-                <Td>{formatDate(song.createdAt)}</Td>
+                <Td>{formatDate(song.createdAt.toString())}</Td>
                 <Td>{formatTime(song.duration)}</Td>
               </Tr>
             ))}

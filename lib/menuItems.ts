@@ -5,7 +5,7 @@ import {
   MdPlaylistAdd,
   MdFavorite,
 } from "react-icons/md";
-import { SidebarItemProps } from "../SidebarItem/types";
+import { SidebarItemProps } from "../components/Sidebar/SidebarItem/types";
 
 export const navMenu: SidebarItemProps[] = [
   {

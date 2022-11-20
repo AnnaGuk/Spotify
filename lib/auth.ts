@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "./prisma";
@@ -7,7 +8,7 @@ export const validateRoute = (handler) => {
     const { USER_ACCESS_TOKEN: token } = req.cookies;
 
     if (token) {
-      let user;
+      let user: User;
 
       try {
         const { id } = jwt.verify(token, "hello");

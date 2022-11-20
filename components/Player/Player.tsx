@@ -20,25 +20,26 @@ import {
   MdOutlinePauseCircleFilled,
   MdOutlineRepeat,
 } from "react-icons/md";
-import { useStoreActions } from "easy-peasy";
+import { useStoreActions } from "../../lib/store";
 import { formatTime } from "../../lib/formatters";
+import { PlayerProps } from "./types";
 
-const Player = ({ songs, activeSong }) => {
-  const [playing, setPlaying] = useState(true);
-  const [index, setIndex] = useState(
+const Player = ({ songs, activeSong }: PlayerProps) => {
+  const [playing, setPlaying] = useState<boolean>(true);
+  const [index, setIndex] = useState<number>(
     songs.findIndex((s) => s.id === activeSong.id)
   );
-  const [seek, setSeek] = useState(0.0);
-  const [isSeeking, setIsSeeking] = useState(false);
-  const [repeat, setRepeat] = useState(false);
-  const [shuffle, setShuffle] = useState(false);
-  const [duration, setDuration] = useState(0.0);
+  const [seek, setSeek] = useState<number>(0.0);
+  const [isSeeking, setIsSeeking] = useState<boolean>(false);
+  const [repeat, setRepeat] = useState<boolean>(false);
+  const [shuffle, setShuffle] = useState<boolean>(false);
+  const [duration, setDuration] = useState<number>(0.0);
   const soundRef = useRef(null);
   const repeatRef = useRef(repeat);
-  const setActiveSong = useStoreActions((state: any) => state.changeActiveSong);
+  const setActiveSong = useStoreActions((state) => state.changeActiveSong);
 
   useEffect(() => {
-    let timerId;
+    let timerId: number;
 
     if (playing && !isSeeking) {
       const f = () => {
@@ -79,7 +80,7 @@ const Player = ({ songs, activeSong }) => {
         const next = Math.floor(Math.random() * songs.length);
 
         if (next === state) {
-          return nextSong();
+          nextSong();
         }
         return next;
       }
@@ -101,9 +102,9 @@ const Player = ({ songs, activeSong }) => {
     setDuration(songDuration);
   };
 
-  const onSeek = (e): void => {
-    setSeek(parseFloat(e[0]));
-    soundRef.current.seek(parseFloat(e[0]));
+  const onSeek = (e: number[]): void => {
+    setSeek(e[0]);
+    soundRef.current.seek(e[0]);
   };
 
   return (

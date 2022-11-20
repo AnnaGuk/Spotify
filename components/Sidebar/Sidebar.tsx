@@ -9,7 +9,7 @@ import {
   LinkOverlay,
 } from "@chakra-ui/layout";
 import SidebarItem from "./SidebarItem/SidebarItem";
-import { navMenu, musicMenu } from "./utils/menuItems";
+import { navMenu, musicMenu } from "../../lib/menuItems";
 import { usePlaylist } from "../../lib/hooks";
 
 const Sidebar = () => {

@@ -1,3 +1,5 @@
+import { Prisma } from "@prisma/client";
+
 export type UserCredentials = {
   email: string;
   password: string;
@@ -12,3 +14,9 @@ export type MutationProps = {
     password: string;
   };
 };
+
+const songWithArtist = Prisma.validator<Prisma.SongArgs>()({
+  include: { artist: true },
+});
+
+export type SongWithArtist = Prisma.SongGetPayload<typeof songWithArtist>;

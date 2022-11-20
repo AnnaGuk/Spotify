@@ -12,7 +12,9 @@ const AuthForm = ({ mode }: AuthProps) => {
 
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: {
+    preventDefault: () => void;
+  }): Promise<void> => {
     e.preventDefault();
     setIsLoading(true);
 
